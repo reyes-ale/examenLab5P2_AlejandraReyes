@@ -17,7 +17,7 @@ public class Empleado extends Usuario{
     public Empleado() {
     }
 
-    public Empleado(String carrera, String puestolaboral, int anios_enRNP, String nombre, String apellido, String contrasenia, String sexo, String departamento, Date fechanacimiento) {
+    public Empleado(String carrera, String puestolaboral, int anios_enRNP, String nombre, String apellido, String contrasenia, String sexo, String departamento, String fechanacimiento) {
         super(nombre, apellido, contrasenia, sexo, departamento, fechanacimiento);
         this.carrera = carrera;
         this.puestolaboral = puestolaboral;
@@ -96,11 +96,11 @@ public class Empleado extends Usuario{
         this.numeroidentidad = numeroidentidad;
     }
 
-    public Date getFechanacimiento() {
+    public String getFechanacimiento() {
         return fechanacimiento;
     }
 
-    public void setFechanacimiento(Date fechanacimiento) {
+    public void setFechanacimiento(String fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
 

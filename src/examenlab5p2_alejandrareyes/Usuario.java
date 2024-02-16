@@ -14,19 +14,20 @@ import java.util.Random;
 public class Usuario {
     Random rand = new Random();
     protected String nombre, apellido, contrasenia, sexo, departamento,numeroidentidad;
-    protected Date fechanacimiento;
+    protected String fechanacimiento;
+ 
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String contrasenia, String sexo, String departamento, Date fechanacimiento) {
+    public Usuario(String nombre, String apellido, String contrasenia, String sexo, String departamento, String fechanacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasenia = contrasenia;
         this.sexo = sexo;
         this.departamento = departamento;
-        this.numeroidentidad = numerodeidentidad(departamento);
-        this.fechanacimiento = fechanacimiento;
+        this.numeroidentidad = numerodeidentidad(departamento, fechanacimiento);
+        this.fechanacimiento=fechanacimiento;
     }
 
     public String getNombre() {
@@ -77,11 +78,11 @@ public class Usuario {
         this.numeroidentidad = numeroidentidad;
     }
 
-    public Date getFechanacimiento() {
+    public String getFechanacimiento() {
         return fechanacimiento;
     }
 
-    public void setFechanacimiento(Date fechanacimiento) {
+    public void setFechanacimiento(String fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
 
@@ -90,7 +91,8 @@ public class Usuario {
         return "Usuario{" + "nombre=" + nombre + ", apellido=" + apellido + ", contrasenia=" + contrasenia + ", sexo=" + sexo + ", departamento=" + departamento + ", numeroidentidad=" + numeroidentidad + ", fechanacimiento=" + fechanacimiento + '}';
     }
     
-    public String numerodeidentidad(String departamento){
+    public String numerodeidentidad(String departamento, String fechaa){
+        this.fechanacimiento=fechaa;
         int random; 
         String numid ="";
         if (departamento.equalsIgnoreCase("Francisco Morazan")){//1-28
@@ -108,9 +110,12 @@ public class Usuario {
             random = rand.nextInt(21)+1;
             numid+=random;
         }
+        
         //0801-2001-12344
-        int anio = fechanacimiento.getYear();
+        String [] fecha = fechaa.split("/");
+        String anio = fecha[2];
         numid+=anio;
+        
         
         for (int i = 0; i < 4; i++) {
             random=rand.nextInt(9)+1;

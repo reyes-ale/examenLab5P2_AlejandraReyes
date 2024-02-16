@@ -17,7 +17,7 @@ public class Civil extends Usuario{
     public Civil() {
     }
 
-    public Civil(String nombre, String apellido, String contrasenia, String sexo, String departamento, Date fechanacimiento) {
+    public Civil(String nombre, String apellido, String contrasenia, String sexo, String departamento, String fechanacimiento) {
         super(nombre, apellido, contrasenia, sexo, departamento, fechanacimiento);
     }
 
@@ -77,11 +77,11 @@ public class Civil extends Usuario{
         this.numeroidentidad = numeroidentidad;
     }
 
-    public Date getFechanacimiento() {
+    public String getFechanacimiento() {
         return fechanacimiento;
     }
 
-    public void setFechanacimiento(Date fechanacimiento) {
+    public void setFechanacimiento(String fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
 
