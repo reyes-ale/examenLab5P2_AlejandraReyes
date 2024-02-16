@@ -10,6 +10,8 @@ import examenlab5p2_alejandrareyes.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +23,7 @@ public class Log_in extends javax.swing.JFrame {
     static Usuario usuario2 = new Empleado("Finanzas", "contabilidad", 3, "Jose", "Padilla", "padi", "masculino", "Cortes", "17/09/1987");
     static Usuario usuario3 = new Civil("Maria", "Rodriguez", "pato", "femenino", "Comayagua", "14/10/2002");
     static Usuario usuario4 = new Empleado("Marketing", "relaciones publicas", 5, "Jane", "Doe", "dee", "femenino", "Francisco Morazan", "02/19/1977");
-    static ArrayList <Usuario> usuarios = new ArrayList();
+    public static ArrayList <Usuario> usuarios = new ArrayList();
     
     
     
@@ -29,12 +31,7 @@ public class Log_in extends javax.swing.JFrame {
     public Log_in() {
         initComponents();
         //combob
-        usuarios.add(usuario1);
-        usuarios.add(usuario2);
-        usuarios.add(usuario3);
-        usuarios.add(usuario4);
-        
-        
+       
     }
 
     /**
@@ -52,10 +49,10 @@ public class Log_in extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jt_infociviles = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jt_tramitesciviles = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
@@ -80,10 +77,10 @@ public class Log_in extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jt_infopersonal = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jt_tramitespersonal = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jTextField4 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -110,23 +107,31 @@ public class Log_in extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Información de los civiles:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jt_infociviles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre Completo", "No. Identidad", "Fecha de Nacimiento"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jt_infociviles);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Tramites de los civiles:");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        jt_tramitesciviles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,10 +139,18 @@ public class Log_in extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre Tramite", "Descripción ", "Fecha", "No. Identidad"
             }
-        ));
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jt_tramitesciviles);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -350,23 +363,31 @@ public class Log_in extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("Información personal:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jt_infopersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre Completo", "No. Identidad", "Fecha de Nacimiento"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jt_infopersonal);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Trámites:");
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jt_tramitespersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -374,10 +395,18 @@ public class Log_in extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre Tramite", "Descripción", "Fecha", "No. Identidad"
             }
-        ));
-        jScrollPane4.setViewportView(jTable4);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jt_tramitespersonal);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -409,6 +438,11 @@ public class Log_in extends javax.swing.JFrame {
         jTabbedPane3.addTab("Información Personal", jPanel9);
 
         jTextField4.setText("jTextField1");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(153, 153, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -627,6 +661,16 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_ingresarActionPerformed
 
     private void bt_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_ingresarMouseClicked
+        usuarios.add(usuario1);
+        usuarios.add(usuario2);
+        usuarios.add(usuario3);
+        usuarios.add(usuario4);
+        System.out.println(usuario1);
+        System.out.println(usuario2);
+        System.out.println(usuario3);
+        System.out.println(usuario4);
+        llenarinfo(jt_infociviles);
+        llenarinfo(jt_infopersonal);
         
         for (int i = 0; i < usuarios.size(); i++) {
             String nombreapellido=usuarios.get(i).getNombre()+ " " + usuarios.get(i).getApellido();
@@ -654,7 +698,6 @@ public class Log_in extends javax.swing.JFrame {
                     break;
                 }
             else{
-                
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta");
             break;
             }
@@ -675,6 +718,10 @@ public class Log_in extends javax.swing.JFrame {
     private void bt_cerrarsesion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_cerrarsesion1MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_bt_cerrarsesion1MouseClicked
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -709,6 +756,24 @@ public class Log_in extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void llenarinfo (JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        for (int i = 0; i < usuarios.size(); i++) {
+            Object [] modelo1 ={usuarios.get(i).getNombre() + usuarios.get(i).getApellido(), usuarios.get(i).getNumeroidentidad(), usuarios.get(i).getFechanacimiento()};//, get fecha etc. ;
+            modelo.addRow(modelo1);
+        }
+    }
+    
+    public void llenartramites (JTable tabla){
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        for (int i = 0; i < usuarios.size(); i++) {
+            Object [] modelo1 ={usuarios.get(i).getNombre() + usuarios.get(i).getApellido(), usuarios.get(i).getNumeroidentidad(), usuarios.get(i).getFechanacimiento()};//, get fecha etc. ;
+            modelo.addRow(modelo1);
+        }
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cerrarsesion;
@@ -755,15 +820,15 @@ public class Log_in extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable jt_infociviles;
+    private javax.swing.JTable jt_infopersonal;
+    private javax.swing.JTable jt_tramitesciviles;
+    private javax.swing.JTable jt_tramitespersonal;
     private javax.swing.JPasswordField tf_contra;
     private javax.swing.JTextField tf_nombre;
     // End of variables declaration//GEN-END:variables
