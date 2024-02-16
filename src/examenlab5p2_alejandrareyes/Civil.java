@@ -17,8 +17,8 @@ public class Civil extends Usuario{
     public Civil() {
     }
 
-    public Civil(String nombre, String apellido, String contrasenia, String sexo, String departamento, String numeroidentidad, Date fechanacimiento) {
-        super(nombre, apellido, contrasenia, sexo, departamento, numeroidentidad, fechanacimiento);
+    public Civil(String nombre, String apellido, String contrasenia, String sexo, String departamento, Date fechanacimiento) {
+        super(nombre, apellido, contrasenia, sexo, departamento, fechanacimiento);
     }
 
     public ArrayList<Tramite> getTramites() {

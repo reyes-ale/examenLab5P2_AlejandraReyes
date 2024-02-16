@@ -17,8 +17,8 @@ public class Empleado extends Usuario{
     public Empleado() {
     }
 
-    public Empleado(String carrera, String puestolaboral, int anios_enRNP, String nombre, String apellido, String contrasenia, String sexo, String departamento, String numeroidentidad, Date fechanacimiento) {
-        super(nombre, apellido, contrasenia, sexo, departamento, numeroidentidad, fechanacimiento);
+    public Empleado(String carrera, String puestolaboral, int anios_enRNP, String nombre, String apellido, String contrasenia, String sexo, String departamento, Date fechanacimiento) {
+        super(nombre, apellido, contrasenia, sexo, departamento, fechanacimiento);
         this.carrera = carrera;
         this.puestolaboral = puestolaboral;
         this.anios_enRNP = anios_enRNP;

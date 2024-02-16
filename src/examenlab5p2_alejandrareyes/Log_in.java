@@ -2,19 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Login;
+package examenlab5p2_alejandrareyes;
+
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author aleja
  */
-public class Log_in extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Log_in
-     */
+public class Log_in extends javax.swing.JFrame {
+    Usuario usuario1 = new Civil("Alejandra", "Reyes", "juguito", "femenino", "Francisco Morazan", new Date(2003, 10, 8));
+    Usuario usuario2 = new Empleado("Finanzas", "contabilidad", 3, "Jose", "Padilla", "padi1", "masculino", "Cortes", new Date(1990, 7, 22));
+    Usuario usuario3 = new Civil("Maria", "Rodriguez", "pato", "femenino", "Comayagua", new Date(2000, 1, 23));
+    Usuario usuario4 = new Empleado("Marketing", "relaciones publicas", 5, "Jane", "Doe", "dee", "femenino", "Francisco Morazan", new Date(1987, 3, 16));
+    
+    
     public Log_in() {
         initComponents();
+        //combob
+        
     }
 
     /**
@@ -143,7 +151,6 @@ public class Log_in extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Log_in.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
