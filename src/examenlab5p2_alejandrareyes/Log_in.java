@@ -118,6 +118,11 @@ public class Log_in extends javax.swing.JFrame {
 
         tab_infociviles.setForeground(new java.awt.Color(204, 204, 255));
         tab_infociviles.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        tab_infociviles.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tab_infocivilesStateChanged(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Información de los civiles:");
@@ -533,6 +538,7 @@ public class Log_in extends javax.swing.JFrame {
             }
         });
 
+        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -548,8 +554,8 @@ public class Log_in extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_cerrarsesion1)
                         .addGap(55, 55, 55))))
         );
@@ -761,7 +767,8 @@ public class Log_in extends javax.swing.JFrame {
         int pos = pospersona(usuarios,tf_nombre.getText());
        
         if (usuarios.get(pos) instanceof Civil){
-            ((Civil)usuarios.get(pos)).getTramites().add(new Tramite(tf_nombretramites.getText(), tf_desctramite.getText(), ((Civil)usuarios.get(pos)).getNumeroidentidad(), new Date()));
+            ((Civil)usuarios.get(pos)).tramites.add(new Tramite(tf_nombretramites.getText(), tf_desctramite.getText(), ((Civil)usuarios.get(pos)).getNumeroidentidad(), new Date()));
+            
             tf_nombretramites.setText("");
             tf_desctramite.setText("");
         }
@@ -790,12 +797,12 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_modificarnombreActionPerformed
 
     private void jb_modificarfinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_modificarfinalMouseClicked
-       
         
+       
         int pos = pospersona(usuarios, tf_nombre.getText());
-         Object posid = comboid.getSelectedItem();
-    System.out.println(posid);
-        if (usuarios.get(pos) instanceof Civil) {
+         Object seleccionado = comboid.getSelectedItem();
+        if (seleccionado instanceof Civil) {
+            
             int po = tf_modificarsexo.getSelectedIndex();
             if (po == 0) {
                 usuarios.get(pos).setSexo("masculino");
@@ -805,22 +812,21 @@ public class Log_in extends javax.swing.JFrame {
 
             int po2 = tf_modificardepartamento.getSelectedIndex();
             if (po2 == 0) {
-                usuarios.get(pos).setDepartamento("Comayagua");
+                ((Civil)seleccionado).setDepartamento("Comayagua");
             } else if (po2 == 1) {
-                usuarios.get(pos).setDepartamento("Cortes");
+                ((Civil)seleccionado).setDepartamento("Cortes");
             } else if (po2 == 2) {
-                usuarios.get(pos).setDepartamento("Francisco Morazan");
+                ((Civil)seleccionado).setDepartamento("Francisco Morazan");
             }
 
-            usuarios.get(pos).setNombre(tf_modificarnombre.getText());
-            usuarios.get(pos).setApellido(tf_modificarapellido.getText());
-            usuarios.get(pos).setContrasenia(tf_modificarcontra.getText());
+            ((Civil)seleccionado).setNombre(tf_modificarnombre.getText());
+            ((Civil)seleccionado).setApellido(tf_modificarapellido.getText());
+            ((Civil)seleccionado).setContrasenia(tf_modificarcontra.getText());
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             String fechastring = sdf.format(tf_modificarfecha.getDate());
-            usuarios.get(pos).setFechanacimiento(fechastring);
+            ((Civil)seleccionado).setFechanacimiento(fechastring);
 
-            // Limpiar campos
             tf_modificarnombre.setText("");
             tf_modificarapellido.setText("");
             tf_modificarcontra.setText("");
@@ -829,6 +835,16 @@ public class Log_in extends javax.swing.JFrame {
         
     }
     }//GEN-LAST:event_jb_modificarfinalMouseClicked
+
+    private void tab_infocivilesStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tab_infocivilesStateChanged
+        DefaultTableModel model = (DefaultTableModel) jt_infociviles.getModel();
+        int pos = pospersona(usuarios, tf_nombre.getText());
+        model.setRowCount(0); 
+        llenarinfoempleados(jt_infociviles);
+        if (jt_tramitesciviles.getRowCount() != 0){
+        llenartramitesempleados(jt_tramitesciviles);
+        }
+    }//GEN-LAST:event_tab_infocivilesStateChanged
     
     /**
      * @param args the command line arguments
@@ -876,7 +892,7 @@ public class Log_in extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i )instanceof Civil){
-                Object [] modelo1 ={((Civil)usuarios.get(i)).tramites.get(i).getNombre() + ((Civil)usuarios.get(i)).tramites.get(i).getDescripcion(), ((Civil)usuarios.get(i)).tramites.get(i).getFecha_envio(), usuarios.get(i).getNumeroidentidad()};//, get fecha etc. ;
+                Object [] modelo1 ={((Civil)usuarios.get(i)).getTramites().get(i).getNombre() + ((Civil)usuarios.get(i)).getTramites().get(i).getDescripcion(), ((Civil)usuarios.get(i)).getTramites().get(i).getFecha_envio(), usuarios.get(i).getNumeroidentidad()};//, get fecha etc. ;
                 modelo.addRow(modelo1);
             }
             
