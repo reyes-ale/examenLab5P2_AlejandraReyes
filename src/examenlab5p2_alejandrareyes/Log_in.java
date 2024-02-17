@@ -778,42 +778,11 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabbedPane3StateChanged
 
     private void comboidItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboidItemStateChanged
-        Civil seleccion = (Civil) comboid.getSelectedItem();
         int pos = pospersona(usuarios, tf_nombre.getText());
-        
-        
-        if (seleccion instanceof Civil){
-            tf_modificarnombre.setText( usuarios.get(pos).getNombre());
+        tf_modificarnombre.setText( usuarios.get(pos).getNombre());
             tf_modificarapellido.setText(usuarios.get(pos).getApellido());
             tf_modificarcontra.setText(usuarios.get(pos).getContrasenia());
-            int po = tf_modificarsexo.getSelectedIndex();
-            if (po == 0) {
-                usuarios.get(pos).setSexo("masculino");
-            } else if (po == 1){
-                usuarios.get(pos).setSexo("femenino");
-            }
-            
-            int po2 = tf_modificardepartamento.getSelectedIndex();
-            if (po2 == 0) {
-                usuarios.get(pos).setDepartamento("Comayagua");
-            } else if (po2==1){
-                usuarios.get(pos).setDepartamento("Cortes");
-            }
-            else if (po2==2){
-                usuarios.get(pos).setDepartamento("Francisco Morazan");
-            }
-            
-            
-            usuarios.get(pos).setNombre(tf_modificarnombre.getText());
-            usuarios.get(pos).setApellido(tf_modificarapellido.getText());
-            usuarios.get(pos).setContrasenia(tf_modificarcontra.getText());
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            String fechastring = sdf.format(tf_modificarfecha);
-            usuarios.get(pos).setFechanacimiento(fechastring);
-            
-            
-        }
+            tf_modificarfecha.setDateFormatString(usuarios.get(pos).getFechanacimiento());
     }//GEN-LAST:event_comboidItemStateChanged
 
     private void tf_modificarnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_modificarnombreActionPerformed
@@ -821,14 +790,46 @@ public class Log_in extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_modificarnombreActionPerformed
 
     private void jb_modificarfinalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_modificarfinalMouseClicked
-        //limpiar cajitas modificar
-        tf_modificarnombre.setText("");
-            tf_modificarapellido.setText("");;
+       
+        
+        int pos = pospersona(usuarios, tf_nombre.getText());
+         Object posid = comboid.getSelectedItem();
+    System.out.println(posid);
+        if (usuarios.get(pos) instanceof Civil) {
+            int po = tf_modificarsexo.getSelectedIndex();
+            if (po == 0) {
+                usuarios.get(pos).setSexo("masculino");
+            } else if (po == 1) {
+                usuarios.get(pos).setSexo("femenino");
+            }
+
+            int po2 = tf_modificardepartamento.getSelectedIndex();
+            if (po2 == 0) {
+                usuarios.get(pos).setDepartamento("Comayagua");
+            } else if (po2 == 1) {
+                usuarios.get(pos).setDepartamento("Cortes");
+            } else if (po2 == 2) {
+                usuarios.get(pos).setDepartamento("Francisco Morazan");
+            }
+
+            usuarios.get(pos).setNombre(tf_modificarnombre.getText());
+            usuarios.get(pos).setApellido(tf_modificarapellido.getText());
+            usuarios.get(pos).setContrasenia(tf_modificarcontra.getText());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            String fechastring = sdf.format(tf_modificarfecha.getDate());
+            usuarios.get(pos).setFechanacimiento(fechastring);
+
+            // Limpiar campos
+            tf_modificarnombre.setText("");
+            tf_modificarapellido.setText("");
             tf_modificarcontra.setText("");
         
         
+        
+    }
     }//GEN-LAST:event_jb_modificarfinalMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
